@@ -18,6 +18,12 @@ h4,
 p {
   margin: 0px;
 }
+figure {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
 img {
   display: block;
   max-width: 100%;
@@ -55,7 +61,12 @@ button {
   --cornflower: #e7e9fc;
   --cloud: #f4f4fd;
   --white: #fff;
+  --dairy: #fcfcfc;
   --grey: #2e2f42;
+  --grey-modal: rgba(46, 47, 66, 0.4);
+  --tr-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --tr-duration: 250ms;
+  --transition: var(--tr-function) var(--tr-duration);
 }
 .section {
   padding-top: 120px;
@@ -84,6 +95,7 @@ button {
 nav {
   margin-left: 76px;
 }
+
 .navigation a {
   font-size: 16px;
   color: var(--navyblue);
@@ -94,8 +106,13 @@ nav {
 .navigation a:hover,
 .navigation a:focus {
   color: var(--ocean);
+  transition: color var(--transition);
 }
-
+.active {
+  color: var(--ocean) !important;
+  text-decoration: underline var(--ocean) 3px;
+  text-underline-offset: 29px;
+}
 .header-contact a {
   color: var(--slate);
 
@@ -107,6 +124,7 @@ nav {
 .header-contact a:hover,
 .header-contact a:focus {
   color: var(--ocean);
+  transition: color var(--transition);
 }
 .slogan-background {
   padding: 188px 0;
@@ -153,6 +171,7 @@ nav {
 .index-button:hover,
 .index-button:focus {
   background: var(--ocean);
+  transition: background-color var(--transition);
 }
 .portfolio-button {
   display: flex;
@@ -178,6 +197,7 @@ nav {
     0px 2px 1px 0px rgba(0, 0, 0, 0.08), 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
   color: var(--white);
   border-bottom: none;
+  transition: var(--transition);
 }
 .company-desc {
   display: flex;
@@ -305,6 +325,7 @@ nav {
   box-shadow: 0px 2px 1px 0px rgba(46, 47, 66, 0.08),
     0px 1px 1px 0px rgba(46, 47, 66, 0.16),
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
+  transition: box-shadow var(--transition);
 }
 .customers-list {
   display: flex;
@@ -319,6 +340,7 @@ nav {
 .customers-list > li:focus {
   border-color: var(--ocean);
   fill: var(--ocean);
+  transition: var(--transition);
 }
 .team-icons {
   display: flex;
@@ -359,6 +381,7 @@ nav {
 .circle:hover {
   background-color: var(--ocean);
   cursor: pointer;
+  transition: background-color var(--transition);
 }
 .circle-footer {
   width: 40px;
@@ -375,4 +398,55 @@ nav {
 .circle-footer:hover {
   background-color: var(--green);
   cursor: pointer;
+  transition: background-color var(--transition);
+}
+.portfolio-wrapper {
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+}
+.portfolio-desc {
+  position: absolute;
+  inset: 0;
+  background-color: var(--iris);
+  color: var(--cloud);
+
+  font-size: 16px;
+
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  translate: 0 100% 0;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 40px;
+}
+.portfolio li:hover .portfolio-desc,
+.portfolio li:focus .portfolio-desc {
+  translate: 0;
+  transition: translate var(--transition);
+}
+.backdrop {
+  background-color: var(--grey-modal);
+  position: fixed;
+  inset: 0;
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+.modal {
+  position: relative;
+  max-width: 408px;
+  min-height: 584px;
+  margin: 80px auto;
+  background-color: var(--dairy);
+}
+.close-btn {
+  position: absolute;
+  inset: 24px 24px auto auto;
+  background-color: var(--dairy);
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
